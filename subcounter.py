@@ -14,11 +14,12 @@ def subcounter(user, platform):
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         }
-        r = requests.get(url=url, headers=headers)
-        soup = BeautifulSoup(r.content, features="html.parser")
-        x = soup.find_all(name="div")
-        for i in x:
-            print(i)
+        r = requests.get(url, headers)
+        soup = BeautifulSoup(r.content, "html.parser")
+        x = soup.find(
+            {"id": "subscriber-count"}, name="yt-formatted-string"
+        ).text.strip()
+        print()
 
 
 if __name__ == "__main__":
