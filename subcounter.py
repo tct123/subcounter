@@ -11,10 +11,9 @@ def subcounter(user, platform):
         channel = Channel(url)
         html = channel.html
         bs = BeautifulSoup(html, "html.parser")
-        counter = bs.find_all()
-        for x in range(0, len(counter)):
-            print(counter[x])
-        return counter
+        counter = bs.find_all("script")
+        pretty = bs.prettify()
+        return pretty
     if platform == "instagram":
         L = Instaloader()
         profile = Profile.from_username(L.context, user)
